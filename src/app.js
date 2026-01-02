@@ -50,3 +50,15 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 })();
 
 
+
+// PORT=5000
+
+// DB_HOST=localhost
+// DB_USER=root
+// DB_PASSWORD=Mumbai@123
+// DB_NAME=stripe_demo
+
+// STRIPE_SECRET_KEY=sk_test_********************
+// STRIPE_WEBHOOK_SECRET=whsec_********************
+
+
