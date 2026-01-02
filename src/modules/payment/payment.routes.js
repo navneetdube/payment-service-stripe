@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const controller = require("./payment.controller");
 const auth = require("../../middlewares/auth.middleware");
-const rbacGuard = require("../../middlewares/rbac.guard");
 
 /**
  * POST /payments/create
@@ -10,7 +9,6 @@ const rbacGuard = require("../../middlewares/rbac.guard");
 router.post(
   "/create",
   auth,
-  rbacGuard("PAYMENT", "CREATE"),
   controller.createPayment
 );
 
@@ -21,7 +19,6 @@ router.post(
 router.get(
   "/orders/:orderId",
   auth,
-  rbacGuard("PAYMENT", "READ"),
   controller.getOrderStatus
 );
 

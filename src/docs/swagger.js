@@ -4,13 +4,13 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Procurement Management API",
+      title: "Payment Service API",
       version: "1.0.0",
       description: "Auto-generated Swagger from Express routes"
     },
     servers: [
       {
-        url: "http://localhost:3000"
+        url: "http://localhost:5000"
       }
     ],
     components: {
