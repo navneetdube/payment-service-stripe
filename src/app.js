@@ -1,24 +1,22 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDoc = require("./docs/swagger");
 const sequelize = require("./config/db");
 const routes = require("./routes");
-require("dotenv").config();
+const webhookRoutes = require("./modules/webhook/webhook.routes");
 const PORT = process.env.PORT || "5000"
-require('./models')
 
-// const productRoutes = require("./routes/product.routes");
-// const paymentRoutes = require("./routes/payment.routes");
-// const webhookRoutes = require("./routes/webhook.routes");
+require('./models')
 
 const app = express();
 
-/**
- * ⚠️ IMPORTANT
- * Webhook requires RAW body
- */
-// app.use("/api/webhook", webhookRoutes);
+app.use(
+  "/api/webhook",
+  express.raw({ type: "application/json" }),
+  webhookRoutes
+);
 
 app.use(express.json());
 app.use(cors());
@@ -26,8 +24,8 @@ app.use(cors());
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
-// app.use("/api/products", productRoutes);
-// app.use("/api/payments", paymentRoutes);
+app.use("/", routes);
+
 
 (async () => {
   try {
