@@ -1,9 +1,10 @@
 const paymentService = require("./payment.service");
 
 exports.createPayment = async (req, res, next) => {
+  console.log("🚀 ~ req:", req.body)
   try {
     const { productId } = req.body;
-    const userId = req.user.id; // coming from auth middleware
+    const userId =  1; // coming from auth middleware
 
     const result = await paymentService.createPaymentIntent({
       productId,
