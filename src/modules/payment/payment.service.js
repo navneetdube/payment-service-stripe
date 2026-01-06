@@ -4,6 +4,7 @@ const { Product, Order } = require("../../models");
 exports.createPaymentIntent = async ({ productId, userId }) => {
   // 1️⃣ Fetch product (DO NOT trust client amount)
   const product = await Product.findByPk(productId);
+  console.log("🚀 ~ product:", product)
   if (!product) {
     throw new Error("Product not found");
   }
