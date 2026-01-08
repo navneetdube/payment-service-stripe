@@ -12,15 +12,18 @@ exports.handleStripeWebhook = async (req, res) => {
       sig,
       process.env.STRIPE_WEBHOOK_SECRET
     );
+    // console.log("🚀 ~ event connection:", event)
   } catch (err) {
     console.error("Webhook signature verification failed:", err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
   try {
+              console.log("🚀 ~ event type:", event)
     switch (event.type) {
       case "payment_intent.succeeded": {
         const paymentIntent = event.data.object;
+        console.log("🚀 ~ paymentIntent:", paymentIntent)
 
         await Order.update(
           { status: "PAID" },
